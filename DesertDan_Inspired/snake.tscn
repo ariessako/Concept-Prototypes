@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://snake.gd" type="Script" id=1]
+[ext_resource path="res://snake.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 26 )
+
+[node name="snake" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 2
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+
+[node name="rotate" type="Node2D" parent="."]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="snake" type="Sprite" parent="rotate"]
+
+modulate = Color( 0.459872, 0.867188, 0.533062, 1 )
+position = Vector2( 0, 1 )
+texture = ExtResource( 2 )
+offset = Vector2( 12, -33 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+position = Vector2( 13, -30 )
+shape = SubResource( 1 )
+
+
