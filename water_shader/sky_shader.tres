@@ -1,0 +1,19 @@
+[gd_resource type="CanvasItemShader" format=1]
+
+[resource]
+
+_code = {
+"fragment": "uniform color c1 = color( 0.18, 0.24, 0.32, 1.0 );
+uniform color c2 = color( 0.65, 0.45, 0.32, 1.0 );
+
+vec4 newc = ( c2 - c1 ) * UV.y + c1;
+
+COLOR = newc;",
+"fragment_ofs": 0,
+"light": "
+",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
