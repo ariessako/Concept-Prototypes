@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://level.gd" type="Script" id=1]
+[ext_resource path="res://assets/level_1_bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://tilemap.gd" type="Script" id=4]
+[ext_resource path="res://door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://transform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://camera.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 232, 10 )
+
+[node name="level_4" type="Node2D"]
+
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0, 0 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+texture = ExtResource( 2 )
+centered = false
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65535, 0, 131071, 0, 196607, 0, 262143, 0, 327679, 0, 393215, 0, 458751, 0, 393229, 0, 393230, 0, 524287, 0, 458761, 0, 458762, 0, 458769, 0, 458770, 0, 458771, 0, 589823, 0, 524292, 0, 524293, 0, 524294, 0, 524310, 0, 524311, 0, 524312, 0, 524313, 0, 524314, 0, 524315, 0, 655359, 0, 589824, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 0, 589829, 0, 589830, 0, 589846, 0, 589847, 0, 589848, 0, 589849, 0, 589850, 0, 589851, 0, 720895, 0, 655360, 0, 655361, 0, 655362, 0, 655363, 0, 655364, 0, 655365, 0, 655366, 0, 655382, 0, 655383, 0, 655384, 0, 655385, 0, 655386, 0, 655387, 0, 786431, 0, 720896, 0, 720897, 0, 720898, 0, 720899, 0, 720900, 0, 720901, 0, 720902, 0, 720918, 0, 720919, 0, 720920, 0, 720921, 0, 720922, 0, 720923, 0 )
+script/script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="door" parent="TileMap" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 400, 128 )
+type = 1
+
+[node name="transform" parent="TileMap" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 224, 88 )
+type = 1
+
+[node name="transform1" parent="TileMap" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 296, 104 )
+type = 2
+
+[node name="player" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 40, 139 )
+
+[node name="camera" parent="." instance=ExtResource( 8 )]
+
+editor/display_folded = true
+
+[node name="top_left" type="Position2D" parent="camera"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bottom_right" type="Position2D" parent="camera"]
+
+transform/pos = Vector2( 432, 192 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="dead" type="Area2D" parent="." groups=[
+"dead",
+]]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 320, 204 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dead"]
+
+transform/pos = Vector2( 320, 204 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="body_enter" from="dead" to="." method="_on_dead_body_enter"]
+
+
