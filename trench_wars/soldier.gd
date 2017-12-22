@@ -70,7 +70,7 @@ func _process(delta):
 			dir_timer += delta
 		anim_spd = ( min( dir_timer, 2 ) / 2 ) * 2
 	
-	vel = move_and_slide( vel )
+	#vel = move_and_slide( vel )
 	
 	# direction
 	if dir_nxt != dir_cur:
