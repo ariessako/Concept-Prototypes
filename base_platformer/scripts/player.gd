@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+enum STATES { IDLE, RUN, JUMP, WALL }
+var state_cur = -1
+var state_nxt = STATES.IDLE
+
 #---------------------------------------
 # player input
 #---------------------------------------
@@ -14,7 +18,27 @@ func _ready():
 	# Initialization here
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func physics_process(delta):
+	state_cur = state_nxt
+	
+	if state_cur == STATES.IDLE:
+		_state_idle( delta )
+	elif state_cur == STATES.RUN:
+		_state_run( delta )
+	elif state_cur == STATES.JUMP:
+		_state_jump( delta )
+	elif state_cur == STATES.WALL:
+		_state_wall( delta )
+
+
+func _state_idle( delta ):
+	pass
+
+func _state_run( delta ):
+	pass
+
+func _state_jump( delta ):
+	pass
+
+func _state_wall( delta ):
+	pass
