@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/sunshine man.png-4ba725c7f6be3004bef35f122a226a71.stex"
+
+[deps]
+
+source_file="res://sunshine man.png"
+source_md5="499adfcb5b8743390361873eda773be8"
+
+dest_files=[ "res://.import/sunshine man.png-4ba725c7f6be3004bef35f122a226a71.stex" ]
+dest_md5="1aab11fd75de77d8dadd809da9ed432f"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

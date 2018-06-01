@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://floor_shader.tres" type="Shader" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://light_mask.png" type="Texture" id=3]
+[ext_resource path="res://player_shader.tres" type="Shader" id=4]
+[ext_resource path="res://m_SunshineMan_unshaded.png" type="Texture" id=5]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+shader/shader = ExtResource( 1 )
+shader/shading_mode = 0
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Light2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	set_process( true )
+func _process(delta):
+	set_pos( get_global_mouse_pos() )
+"
+
+[sub_resource type="CanvasItemMaterial" id=5]
+
+shader/shader = ExtResource( 4 )
+shader/shading_mode = 0
+
+[sub_resource type="OccluderPolygon2D" id=4]
+
+closed = true
+cull_mode = 0
+polygon = Vector2Array( -3, 10, -3, 7, -4, 7, -4, 3, -3, 3, -3, 2, -1, 2, -1, 1, -3, 1, -3, 2, -5, 2, -5, 1, -4, 1, -4, -2, -6, -2, -6, -3, -5, -3, -5, -4, -4, -4, -4, -5, -3, -5, -3, -6, -4, -6, -4, -7, -5, -7, -5, -8, -2, -8, -2, -7, -1, -7, -1, -8, 0, -8, 0, -9, 1, -9, 1, -8, 2, -8, 2, -7, 3, -7, 3, -8, 6, -8, 6, -7, 5, -7, 5, -6, 4, -6, 4, -5, 5, -5, 5, -4, 6, -4, 6, -3, 7, -3, 7, -2, 5, -2, 5, -1, 4, -1, 4, 0, 3, 0, 3, 1, 1, 1, 1, 2, 2, 2, 2, 4, 3, 4, 3, 7, 2, 7, 2, 8, 1, 8, 1, 10, 0, 10, 0, 6, -1, 6, -1, 8, -2, 8, -2, 10 )
+
+[node name="Node2D" type="Node2D"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+material/material = SubResource( 1 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 180.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D" type="Light2D" parent="."]
+
+transform/pos = Vector2( 246.28, 44.4959 )
+enabled = true
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+scale = 0.5
+color = Color( 1, 1, 1, 1 )
+energy = 0.5
+mode = 0
+range/height = 10.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = true
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+script/script = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( 231, 91 )
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+
+[node name="rotate" type="Node2D" parent="player"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="player/rotate"]
+
+material/material = SubResource( 5 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -10 )
+vframes = 4
+hframes = 4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="player/rotate"]
+
+transform/pos = Vector2( 0, -10 )
+occluder = SubResource( 4 )
+light_mask = 1
+
+

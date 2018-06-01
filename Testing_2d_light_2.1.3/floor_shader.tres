@@ -1,0 +1,22 @@
+[gd_resource type="CanvasItemShader" format=1]
+
+[resource]
+
+_code = {
+"fragment": "COLOR = vec4( 0.1, 0.25, 0.1, 1.0 );",
+"fragment_ofs": 0,
+"light": "//LIGHT = COLOR * LIGHT_COLOR;
+//LIGHT = LIGHT_COLOR;
+vec3 aux = COLOR.rgb * LIGHT_COLOR.rgb;
+float light_dist = LIGHT_COLOR.a;//length( LIGHT_VEC );
+//LIGHT = vec4( aux, 20.0 / light_dist );
+float a = 0;
+a += step( 0.10, light_dist ) * 0.2;
+a += step( 0.15, light_dist ) * 0.2;
+a += step( 0.20, light_dist ) * 0.1;
+LIGHT = vec4( aux, a );",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
