@@ -1,7 +1,7 @@
 extends Node2D
 
-export(int) var agent_count = 1000
-export(float) var agent_spacing = 50
+export(int) var agent_count = 500
+export(float) var agent_spacing = 25
 export(Vector2) var offset = Vector2( 200, 200 )
 
 var agent_scn = preload ( "./agent.tscn" )

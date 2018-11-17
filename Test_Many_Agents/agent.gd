@@ -17,6 +17,7 @@ func _input(event):
 		half_dist_sq *= half_dist_sq
 
 func _integrate_forces( state ):
+	#if state.get_contact_count() > 1: return
 	var distance_to_target = target_pos - position
 	var distance_sq = distance_to_target.length_squared()
 	var desired_velocity = distance_to_target.normalized() * MAX_VEL
